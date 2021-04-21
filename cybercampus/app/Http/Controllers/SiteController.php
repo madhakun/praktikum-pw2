@@ -11,9 +11,14 @@ class SiteController extends Controller
         return view('beranda'); //Lokasi file : resources/views/beranda.php
     }
 
-    public function tentang()
+    public function layanan()
     {
-        return view('site.tentang');
+        $list_layanan = [
+            'Pendidikan dan Pengajaran',
+            'Bakti pada masyarakat',
+            'Penelitian'
+        ];
+        return view('site.layanan', compact('list_layanan'));
     }
 
     public function kontak()
@@ -21,8 +26,17 @@ class SiteController extends Controller
         return view('site.kontak');
     }
 
-    public function layanan()
+    public function tentang()
     {
-        return view('site.layanan');
+        $nama_prodi = 'Sistem Informasi';
+        $universitas = 'Universitas Tanjungpura';
+        $kajur = 'Ilhamsyah';
+
+        return view('site.tentang', compact('nama_prodi', 'universitas', 'kajur'));
+    }
+
+    public function listDosen($tahun)
+    {
+        echo "Ini adalah halaman list dosen $tahun";
     }
 }
