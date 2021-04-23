@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.frontend.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layanan</title>
-</head>
-
-<body>
-    <h1>Layanan</h1>
+@section('content')
+    <h1 class="mt-4">Layanan</h1>
     <p>Layanan program studi sistem informasi meliputi :
         <ol>
         @foreach($list_layanan as $ls)
@@ -17,6 +9,4 @@
         @endforeach
         </ol>
     </p>
-</body>
-
-</html>
+@endsection

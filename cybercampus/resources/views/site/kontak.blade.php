@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.frontend.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontak</title>
-</head>
-
-<body>
-    <p>
-        <label for="nama">Nama </label>
-        <input type="text" name="nama" id="nama">
-    </p>
-    <p>
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email">
-    </p>
-    <p><label for="tanggapan">Tanggapan</label></p>
-    <textarea name="tanggapan" id="tanggapan" cols="30" rows="10"></textarea>
-</body>
-
-</html>
+@section('content')
+    <h1 class="mt-4">Kontak Kami</h1>
+    <form>
+        <div class="form-group">
+            <label for="nama">Nama </label>
+            <input class="form-control" type="text" name="nama" id="nama">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" type="email" name="email" id="email">
+        </div>
+        <div class="form-group">
+            <label for="tanggapan">Tanggapan</label>
+            <textarea class="form-control" name="tanggapan" id="tanggapan" cols="30" rows="10"></textarea>
+        </div>
+        <input class="btn btn-primary" type="button" value="Kirim" name="kirim">
+    </form>
+@endsection
