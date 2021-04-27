@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BackendController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LayananController;
 use Illuminate\Support\Facades\Route;
@@ -41,3 +42,6 @@ Route::get('/layanan/detail/{id}', [LayananController::class, 'detail']);
 Route::get('/layanan/tambah', [LayananController::class, 'tambah']);
 Route::get('/layanan/ubah/{id}', [LayananController::class, 'ubah']);
 Route::get('/layanan/hapus/{id}', [LayananController::class, 'hapus']);
+
+// Backend
+Route::get('/admin', [BackendController::class, 'index']);
