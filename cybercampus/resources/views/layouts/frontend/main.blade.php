@@ -14,7 +14,7 @@
   <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/blog-post.css" rel="stylesheet">
+  <link href="{{asset('css/blog-post.css')}}" rel="stylesheet">
 
 </head>
 

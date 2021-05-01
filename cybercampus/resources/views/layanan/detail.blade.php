@@ -5,5 +5,5 @@
     Nama Layanan : {{$layanan->nama_layanan}} <br>
     Deskriptsi Layanan : {{$layanan->deskripsi_layanan}} <br>
 
-    <a href="../index">back</a>
+    <a href="{{route('layanan.index')}}" class="btn btn-primary">Back</a>
 @endsection
