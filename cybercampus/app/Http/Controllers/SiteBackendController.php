@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class BackendController extends Controller
+class SiteBackendController extends Controller
 {
     public function index()
     {
-        return view('layouts.backend.main');
+        return view('sitebackend.index');
     }
 }

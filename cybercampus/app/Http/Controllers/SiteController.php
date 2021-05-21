@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Dataku;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SiteController extends Controller
@@ -33,8 +34,10 @@ class SiteController extends Controller
         $nama_prodi = 'Sistem Informasi';
         $universitas = 'Universitas Tanjungpura';
         $kajur = 'Ilhamsyah';
+        $id_user = Auth::id();
+        $current_user = Auth::user();
 
-        return view('site.tentang', compact('nama_prodi', 'universitas', 'kajur'));
+        return view('site.tentang', compact('nama_prodi', 'universitas', 'kajur', 'id_user', 'current_user'));
     }
 
     public function percontohan()
