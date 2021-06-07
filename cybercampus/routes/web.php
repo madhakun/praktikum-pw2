@@ -3,6 +3,8 @@
 use App\Http\Controllers\SiteBackendController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LayananController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\BeritaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -26,8 +28,8 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('/beranda', [SiteController::class, 'beranda'])->name('beranda');
-Route::get('/tentang', [SiteController::class, 'tentang'])->name('tentang')->middleware('auth');
+Route::get('/', [SiteController::class, 'beranda'])->name('beranda');
+Route::get('/tentang', [SiteController::class, 'tentang'])->name('tentang')->middleware(['auth', 'permission:menambahkan-berita']);
 Route::get('/percontohan', [SiteController::class, 'percontohan']);
 Route::get('/kontak', [SiteController::class, 'kontak'])->name('kontak');
 Route::get('/layanan', [SiteController::class, 'layanan']);
@@ -74,3 +76,50 @@ Route::get('/cobaform', [SiteController::class, 'cobaForm'])->name('cobaform');
 Route::post('/prosesform', [SiteController::class, 'prosesForm'])->name('prosesform');
 Route::get('/layanan/formtambah', [LayananController::class, 'formtambah'])->name('layanan.formtambah');
 Route::get('/layanan/formubah/{id}', [LayananController::class, 'formUbah'])->name('layanan.formubah');
+
+// Kategori
+Route::get('/admin/kategori/index', [KategoriController::class, 'index'])
+                                ->middleware('auth')
+                                ->name('admin.kategori.index');
+Route::get('/admin/kategori/detail/{id}', [KategoriController::class, 'detail'])
+                                ->middleware('auth')
+                                ->name('admin.kategori.detail');
+Route::get('/admin/kategori/formtambah', [KategoriController::class, 'formTambah'])
+                                ->middleware('auth')
+                                ->name('admin.kategori.formtambah');
+Route::post('/admin/kategori/tambah', [KategoriController::class, 'tambah'])
+                                ->middleware('auth')
+                                ->name('admin.kategori.tambah');
+Route::get('/admin/kategori/formubah/{id}', [KategoriController::class, 'formUbah'])
+                                ->middleware('auth')
+                                ->name('admin.kategori.formubah');
+Route::post('/admin/kategori/ubah/{id}', [KategoriController::class, 'ubah'])
+                                ->middleware('auth')
+                                ->name('admin.kategori.ubah');
+Route::get('/admin/kategori/hapus/{id}', [KategoriController::class, 'hapus'])
+                                ->middleware('auth')
+                                ->name('admin.kategori.hapus');
+
+
+// Berita
+Route::get('/admin/berita/index', [BeritaController::class, 'index'])
+                                ->middleware(['auth', 'permission:index-berita'])
+                                ->name('admin.berita.index');
+Route::get('/admin/berita/detail/{id}', [BeritaController::class, 'detail'])
+                                ->middleware(['auth', 'permission:detail-berita'])
+                                ->name('admin.berita.detail');
+Route::get('/admin/berita/formtambah', [BeritaController::class, 'formTambah'])
+                                ->middleware(['auth', 'permission:menambahkan-berita'])
+                                ->name('admin.berita.formtambah');
+Route::post('/admin/berita/tambah', [BeritaController::class, 'tambah'])
+                                ->middleware(['auth', 'permission:menambahkan-berita'])
+                                ->name('admin.berita.tambah');
+Route::get('/admin/berita/formubah/{id}', [BeritaController::class, 'formUbah'])
+                                ->middleware(['auth', 'permission:edit-berita'])
+                                ->name('admin.berita.formubah');
+Route::post('/admin/berita/ubah/{id}', [BeritaController::class, 'ubah'])
+                                ->middleware(['auth', 'permission:edit-berita'])
+                                ->name('admin.berita.ubah');
+Route::get('/admin/berita/hapus/{id}', [BeritaController::class, 'hapus'])
+                                ->middleware(['auth', 'permission:hapus-berita'])
+                                ->name('admin.berita.hapus');

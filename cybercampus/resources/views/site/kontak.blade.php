@@ -17,4 +17,7 @@
         </div>
         <input class="btn btn-primary" type="button" value="Kirim" name="kirim">
     </form>
+@if(Auth::user()->hasRole('member'))
+    <h1>Teks ini cuma boleh dibaca oleh member</h1>
+@endif
 @endsection
