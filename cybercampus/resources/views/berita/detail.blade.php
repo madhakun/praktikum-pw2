@@ -31,6 +31,12 @@
                             <td>{!!html_entity_decode($berita->isi)!!}</td>
                         </tr>
                         <tr>
+                            <td>Cover</td>
+                            <td>
+                            <img src="{{asset('gambar/'.$berita->cover_img)}}" alt="gambar">
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Kategori</td>
                             <td>{{$berita->kategori->nama_kategori}}</td>
                         </tr>

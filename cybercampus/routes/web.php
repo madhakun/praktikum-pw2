@@ -5,6 +5,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -123,3 +124,8 @@ Route::post('/admin/berita/ubah/{id}', [BeritaController::class, 'ubah'])
 Route::get('/admin/berita/hapus/{id}', [BeritaController::class, 'hapus'])
                                 ->middleware(['auth', 'permission:hapus-berita'])
                                 ->name('admin.berita.hapus');
+
+// Gallery
+Route::get('/gallery/upload', [GalleryController::class, 'formUpload'])->name('gallery.upload');
+Route::post('/gallery/proses-upload', [GalleryController::class, 'prosesUpload'])->name('gallery.prosesUpload');
+Route::get('/gallery/view-gallery/{id}', [GalleryController::class, 'viewGallery'])->name('gallery.viewGallery');

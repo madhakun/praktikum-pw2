@@ -32,10 +32,18 @@ class BeritaController extends Controller
 
     public function tambah(Request $request)
     {
+        $target_directory = 'gambar';
+        $request->validate([
+            'cover_img'=>'mimes:png,jpg|max:1024',
+        ]);
+        $file = $request->file('cover_img');
+        $filename= time(). '-' .$file->getClientOriginalName();
+        $request->cover_img->move(public_path('gambar'), $filename);
+
         $berita = new Berita();
         $berita->judul = $request->judul;
         $berita->isi = $request->isi;
-        $berita->cover_img = $request->cover_img;
+        $berita->cover_img = $filename;
         $berita->kategori_id = $request->kategori_id;
         $berita->user_id = Auth::id();
         $berita->save();
@@ -51,10 +59,18 @@ class BeritaController extends Controller
 
     public function ubah(Request $request, $id)
     {
+        $target_directory = 'gambar';
+        $request->validate([
+            'cover_img'=>'mimes:png,jpg|max:1024',
+        ]);
+        $file = $request->file('cover_img');
+        $filename= time(). '-' .$file->getClientOriginalName();
+        $request->cover_img->move(public_path('gambar'), $filename);
+
         $berita = Berita::find($id);
         $berita->judul = $request->judul;
         $berita->isi = $request->isi;
-        $berita->cover_img = $request->cover_img;
+        $berita->cover_img = $filename;
         $berita->kategori_id = $request->kategori_id;
         $berita->user_id = Auth::id();
         $berita->save();
