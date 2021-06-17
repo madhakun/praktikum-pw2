@@ -6,6 +6,7 @@ use App\Http\Controllers\LayananController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\BukuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -129,3 +130,14 @@ Route::get('/admin/berita/hapus/{id}', [BeritaController::class, 'hapus'])
 Route::get('/gallery/upload', [GalleryController::class, 'formUpload'])->name('gallery.upload');
 Route::post('/gallery/proses-upload', [GalleryController::class, 'prosesUpload'])->name('gallery.prosesUpload');
 Route::get('/gallery/view-gallery/{id}', [GalleryController::class, 'viewGallery'])->name('gallery.viewGallery');
+
+// UJIAN AKHIR SEMESTER
+Route::get('/admin/buku/index', [BukuController::class, 'index'])
+                                ->middleware('auth')
+                                ->name('admin.buku.index');
+Route::get('/admin/buku/formtambah', [BukuController::class, 'formTambah'])
+                                ->middleware('auth')
+                                ->name('admin.buku.formtambah');
+Route::post('/admin/buku/tambah', [BukuController::class, 'tambah'])
+                                ->middleware('auth')
+                                ->name('admin.buku.tambah');
